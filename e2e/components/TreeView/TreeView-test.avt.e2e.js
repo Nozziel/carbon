@@ -9,7 +9,7 @@
 
 const { expect, test } = require('@playwright/test');
 const { visitStory } = require('../../test-utils/storybook');
-const LONG_LABEL_NODE_1 = 'Application development and integration solutions';
+const LONG_LABEL_NODE = 'Application development and integration solutions';
 const SHORT_LABEL_NODE = 'Blockchain';
 
 const STORY_CONFIG = {
@@ -122,12 +122,12 @@ test.describe('@avt TreeView', () => {
     await visitStory(page, STORY_CONFIG);
 
     // Long labels: tooltip appears with correct content and accessibility
-    const longNode = page.getByRole('treeitem', { name: LONG_LABEL_NODE_1 });
+    const longNode = page.getByRole('treeitem', { name: LONG_LABEL_NODE });
     await longNode.focus();
 
     const tooltip = longNode.locator('[role="tooltip"]');
     await expect(tooltip).toBeVisible();
-    await expect(tooltip).toHaveText(LONG_LABEL_NODE_1);
+    await expect(tooltip).toHaveText(LONG_LABEL_NODE);
 
     // Verify ARIA relationship
     const button = longNode.locator('.cds--tree-node__label__text-button');
